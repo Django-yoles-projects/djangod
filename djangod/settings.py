@@ -33,22 +33,32 @@ DEBUG = True
 ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.0", "localhost"]
 
 # Application definition
-INTERNAL_APPS = [
+# INTERNAL_APPS = [
+#     'django.contrib.admin',
+#     'django.contrib.auth',
+#     'django.contrib.contenttypes',
+#     'django.contrib.sessions',
+#     'django.contrib.messages',
+#     'django.contrib.staticfiles',
+# ]
+
+# CORE_APPS = [
+#     'apps.blog'
+# ]
+
+# THIRD_PARTY_APPS = []
+
+# INSTALLED_APPS = [INTERNAL_APPS + CORE_APPS + THIRD_PARTY_APPS]
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.blog',
+    'apps.register',
 ]
-
-CORE_APPS = [
-    'apps.blog'
-]
-
-THIRD_PARTY_APPS = []
-
-INSTALLED_APPS = [INTERNAL_APPS + CORE_APPS + THIRD_PARTY_APPS]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
