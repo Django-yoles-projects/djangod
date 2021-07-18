@@ -33,8 +33,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.0", "localhost"]
 
 # Application definition
-
-INSTALLED_APPS = [
+INTERNAL_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+CORE_APPS = [
+    'apps.blog'
+]
+
+THIRD_PARTY_APPS = []
+
+INSTALLED_APPS = [INTERNAL_APPS + CORE_APPS + THIRD_PARTY_APPS]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -84,7 +91,7 @@ DATABASES = {
         'USER': env("POSTGRES_USER"),
         'PASSWORD': env("POSTGRES_PASSWORD"),
         'HOST': env("POSTGRES_HOST"),
-        'PORT': 5432
+        'PORT': env("POSTGRES_PORT")
     }
 }
 
