@@ -74,41 +74,50 @@ db-delete:
 db-flush:
 	$(RUN) $(MANAGE) flush --noinput
 
+clean-pyc:	## Clean python cache
 clean-pyc:
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 	
 
-# Internal rules
+
+##
+## Internal rules
+##---------------------------------------------------------------------------
 
 build:
 	$(FIG) build
 
-up:
+up:	## Start project container
 	$(FIG) up
 
-stop:
+stop: ## Stop project container
 	$(FIG) down
 
 app:   ## make django app appname=[name]
 app:
 	$(EXEC) $(SERVICE) bash -c "cd apps && django-admin startapp $(appname)"
 
+appermission:	## make django app with user right appname=[name]
 appermission: app
 	sudo chown -R ${USER}:${USER} ./apps/$(appname)
 
+createsuperuser:	## Create Django super user
 createsuperuser:
 	$(RUN) $(SERVICE) $(MANAGE) createsuperuser"
 
+project:	## Make django project with apps and data folders
 project:
 	$(RUN) $(SERVICE) django-admin startproject $(NAME) .
 	mkdir apps
 	sudo chown -R ${USER}:${USER} ./data
 
+permissions:	## Give current user right on project
 permissions:
 	sudo chown -R ${USER}:${USER} ./$(NAME)
 
+show-host:	## Allowed Host: Copy / Paste this line on init project 
 show-host:
 	@echo ALLOWED_HOSTS = [\"0.0.0.0\", \"127.0.0.0\", \"localhost\"]
 
