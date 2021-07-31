@@ -19,6 +19,8 @@ help:
 start:          ## Install and start the project
 start: build up
 
+restart:          ## Restart whole project
+restart: down up
 
 reset:          ## Reset the whole project
 reset: stop start
@@ -92,7 +94,7 @@ build:
 up:	## Start project container
 	$(FIG) up
 
-stop: ## Stop project container
+down: ## Stop project container
 	$(FIG) down
 
 app:   ## make django app appname=[name]
@@ -105,7 +107,7 @@ appermission: app
 
 createsuperuser:	## Create Django super user
 createsuperuser:
-	$(RUN) $(SERVICE) $(MANAGE) createsuperuser"
+	$(EXEC) $(SERVICE) $(MANAGE) createsuperuser
 
 project:	## Make django project with apps and data folders
 project:

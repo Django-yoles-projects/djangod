@@ -1,3 +1,4 @@
+from logging import log
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
 
