@@ -3,6 +3,7 @@
 ### project ###
 .envs/
 data/
+logs/
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,linux,pycharm
