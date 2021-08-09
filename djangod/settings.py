@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from posixpath import dirname
 import environ
 
 env = environ.Env()
@@ -43,12 +44,13 @@ INTERNAL_APPS = [
 ]
 
 CORE_APPS = [
-    'apps.blog'
+    'apps.blog',
+    'apps.register',
 ]
 
 THIRD_PARTY_APPS = []
 
-INSTALLED_APPS = [INTERNAL_APPS + CORE_APPS + THIRD_PARTY_APPS]
+INSTALLED_APPS = INTERNAL_APPS + CORE_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -138,3 +140,49 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+dir_name = os.path.join(BASE_DIR, "logs")
+if not os.path.exists(dir_name):
+    os.mkdir(dir_name)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {       
+        'verbose': {
+            'format': '[{levelname}] {asctime} - in {filename} l.{lineno} - {message}',
+            'datefmt': "%d/%m/%Y %H:%M:%S",
+            'style': '{',
+        },
+        'simple': {
+            'format': '[{levelname}] {message}',
+            'style': '{',
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(dir_name, 'app.log'),
+            'formatter': 'verbose'
+        },
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

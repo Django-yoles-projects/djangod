@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .form-group {
+            border: 1px solid black;
+        }
+        .form-control {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h2>Inscription</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+            {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+      {% endfor %}
+      <input type="submit" value="inscription"/>
+    </form>
+</body>
+</html>
