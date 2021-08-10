@@ -57,7 +57,7 @@ class ActivateAccount(View):
             user.save()
             user.profile.save()
             login(request, user)
-            messages.success(request, ('Votre compte à été confirmé.'))
+            messages.success(request, ('Votre compte à été confirmé. Vous pouvez dès à présent vous connecter.'))
             return redirect("register:verification")
         else:
             messages.warning(request, ("Le lien de confirmation n'est pas valide, ce lien a peut être déjà été utilisé."))
