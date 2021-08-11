@@ -16,8 +16,10 @@ Including another URLconf
 from apps.register.views import ActivateAccount
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import render
 
 urlpatterns = [
+    path('', lambda request : render(request, 'core/home.html'), name="home"),
     path('admin/', admin.site.urls),
     path("register/", include('apps.register.urls'), name="register"),
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
