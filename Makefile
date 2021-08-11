@@ -117,12 +117,10 @@ project:
 
 permissions:	## Give current user right on project
 permissions:
-	sudo chown -R ${USER}:${USER} ./$(NAME)
+	sudo chown -R ${USER}:${USER} ./$(NAME) ./apps
 
 show-host:	## Allowed Host: Copy / Paste this line on init project 
 show-host:
 	@echo ALLOWED_HOSTS = [\"0.0.0.0\", \"127.0.0.0\", \"localhost\"]
 
 userproject: project permissions show-host
-
-# take params to choose witch project 

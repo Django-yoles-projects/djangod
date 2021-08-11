@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
-
+    
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
