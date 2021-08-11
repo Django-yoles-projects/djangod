@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, register, verification
+from .views import register, verification
 
 app_name="register"
 
