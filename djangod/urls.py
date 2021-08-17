@@ -21,6 +21,7 @@ from django.shortcuts import render
 urlpatterns = [
     path('', lambda request : render(request, 'core/home.html'), name="home"),
     path('admin/', admin.site.urls),
+    path('accounts/', include('apps.custom_auth.urls'), name="accounts"),
     path("register/", include('apps.register.urls'), name="register"),
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
 ]
