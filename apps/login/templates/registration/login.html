@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block css_file %}
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}" />
+{% endblock %}
+
+
+{% block title %}
+    Connexion | 
+{% endblock title %}
+    
+{% block content %}
+    <h2>Connexion</h2>
+    
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="post" action="">                 
+        {% csrf_token %} 
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+            {% if field.help_text %}
+                <small class="help-text">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+                <p class="error-text">{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+        <input type="submit" value="Se Connecter"/>
+        <!-- <input name="next" type="hidden" value="{% url 'home' %}" /> -->
+    </form>
+{% endblock content %}
+    
