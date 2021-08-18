@@ -4,6 +4,7 @@
 
 {% block css_file %}
     <link rel="stylesheet" href="{% static 'css/forms.css' %}" />
+    <link rel="stylesheet" href="{% static 'login/login.css' %}" />
 {% endblock %}
 
 
@@ -35,8 +36,10 @@
                 <p class="error-text">{{ error }}</p>
             {% endfor %}
         {% endfor %}
-        <input type="submit" value="Se Connecter"/>
-        <!-- <input name="next" type="hidden" value="{% url 'home' %}" /> -->
+        <div class="buttons">
+            <input type="submit" value="Se Connecter"/>
+            <a class="forgot-password" href="{% url 'accounts:password_change' %}">Mot de passe oublié ?</a>
+        </div>
     </form>
 {% endblock content %}
     

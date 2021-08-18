@@ -1,0 +1,11 @@
+.buttons {
+    display: flex;
+}
+
+a.forgot-password{
+    border: none;
+    color: #1A54FF;
+}
+a.forgot-password:hover{
+    text-decoration: underline;
+}

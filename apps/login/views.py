@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, views
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from .forms import LoginForm
@@ -17,7 +17,7 @@ def log_in(request, *args, **kwargs):
         else:
             messages.error(request, 'Vos identifiants sont incorrects.')
     form = LoginForm()
-    return render(request, "registration/login.html", {"form":form})
+    return render(request, "login/login.html", {"form":form})
 
 def log_out(request, *args, **kwargs):
     auth_logout(request)
