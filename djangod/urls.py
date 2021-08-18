@@ -17,6 +17,7 @@ from apps.register.views import ActivateAccount
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
+import debug_toolbar
 
 urlpatterns = [
     path('', lambda request : render(request, 'core/home.html'), name="home"),
@@ -24,4 +25,7 @@ urlpatterns = [
     path('accounts/', include('apps.custom_auth.urls'), name="accounts"),
     path("register/", include('apps.register.urls'), name="register"),
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
+    path('__debug__/', include(debug_toolbar.urls)),
+    # url(r'^__debug__/', include(debug_toolbar.urls)),
 ]
+SHOW_TOOLBAR_CALLBACK = True
