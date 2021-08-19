@@ -1,0 +1,12 @@
+<header>
+    <nav>
+        <ul>
+            
+            {% if not request.user.is_anonymous %}
+                {% include 'header/nav_logged.html' %}
+            {% else %}
+                {% include 'header/nav_home.html' %}
+            {% endif %}
+        </ul>
+    </nav>
+</header> 

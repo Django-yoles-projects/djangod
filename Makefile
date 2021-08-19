@@ -141,5 +141,7 @@ force-clean:
 	docker ps -a
 	docker images
 
+force-restart:	## removes images and container, rebuild, and start project
+force-restart: force-clean start
 
 userproject: project permissions show-host

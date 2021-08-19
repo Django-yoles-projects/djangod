@@ -1,0 +1,23 @@
+.buttons {
+    display: flex;
+}
+
+a.forgot-password{
+    border: none;
+    color: #1A54FF;
+}
+a.forgot-password:hover{
+    text-decoration: underline;
+}
+
+.error-login-text {
+    text-align: center;
+    color: rgb(107, 0, 0);
+    font-weight: bold;
+    padding: 15px;
+    background-color: rgba(255, 0, 0, 0.2);
+    font-family:  "Gill Sans", sans-serif;
+    max-width: 30vw;
+    margin: 30px auto;
+    border-radius: 5px;
+}
