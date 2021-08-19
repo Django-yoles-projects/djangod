@@ -1,4 +1,4 @@
-from apps.login.views import log_in, log_out
+from apps.login.views import LoginUser, log_out
 from django.contrib.auth import views
 from django.urls import path
 
@@ -6,7 +6,11 @@ from django.urls import path
 app_name = "accounts"
 
 urlpatterns = [
-    path('login/', log_in, name='login'),
+    path(
+        'login/', 
+        LoginUser.as_view(), 
+        name='login'
+    ),
     path('user/logout', log_out, name='logout_user'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
 
