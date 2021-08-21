@@ -6,7 +6,7 @@ header nav ul {
     justify-content: space-around;
 }
 
-a {
+header a {
     text-decoration: none;
     color: black;
     padding: 5px 15px;
@@ -15,7 +15,7 @@ a {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 90vw;
     text-align: center;
     margin: auto;
 }
