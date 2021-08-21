@@ -127,12 +127,14 @@ show-host:	## Allowed Host: Copy / Paste this line on init project
 show-host:
 	@echo ALLOWED_HOSTS = [\"0.0.0.0\", \"127.0.0.0\", \"localhost\"]
 
+db-dump:	## Make a database dump
 db-dump:
 	$(EXEC) $(SERVICE_DB) bash -c "pg_dumpall -U postgres > backup.sql"
 	docker cp $(shell docker ps --no-trunc -aqf name=djangod_db):/$(BACKUP_SQL) $(TMP_SQL)
 	sed '/CREATE ROLE postgres;/d' ./$(TMP_SQL) > $(BACKUP_SQL)
 	rm $(TMP_SQL)
 
+force-clean:	## removes all images and containers
 force-clean:
 	docker container prune
 	docker image prune
