@@ -1,0 +1,77 @@
+{% block content %}
+
+<div class="col-sm-9">
+    {% if articles %}
+    <div class="last_article">
+        {% with last_article=articles.0 %}
+            <div>
+                <h1>Dernier article: </h1>
+                <h3>{{ last_article.title }}</h3>
+                <small>Ajouté le {{ last_article.created_at | date:"d F Y" }}</small>
+                <div style="text-align: left;">
+                    {% autoescape off %}
+                        {{ last_article.content|linebreaks|truncatewords:100 }}
+                    {% endautoescape %}
+                </div>
+            </div>
+            <hr/>
+        {% endwith %}
+    </div>
+    {% endif %}
+    <div class="articles" style="display: flex; flex-wrap: wrap;">
+        {% for article in articles %}
+            {% if forloop.first %}
+            {% else %}
+                <div class="article" style="display: flex; flex-direction: column; flex-wrap: wrap; width: 300px; text-align: left; border: 1px solid black; border-radius: 5px; padding: 5px; margin: 5px">
+                    <h3  style="display: flex; align-items: center; min-height: 70px;">
+                        <a href="{% url 'blog:article_detail' article.pk %}">{{ article.title }}</a>
+                    </h3>
+                    <div style="display: flex; align-items: center; justify-content: space-around;">
+                        <small style="min-height: 20px;">{{ article.level }}</small>
+                        <small style="min-height: 20px;">Ajouté le {{ article.created_at | date:"d F Y" }}</small>
+                    </div>
+                    <hr>
+                    <!-- {% autoescape off %}
+                        {{ article.content|linebreaks|truncatewords:100 }}
+                    {% endautoescape %} -->
+    
+                    <p class="text-muted">
+    
+                    {% comment %}
+                        <!-- <a href="{% url 'article-detail' article.pk %}">[Read More]</a> -->
+                    {% endcomment %}
+                        <!-- <a href="#">Lire l'article</a> -->
+                    </p>
+                    {% comment %}
+                    <!-- <a href="{% url 'article-list' article.category.slug %}" -->
+                    {% endcomment %}
+                    <a href="#"
+                    class="badge badge-info">{{ article.category.name|capfirst }}</a>
+    
+                </div>
+            {% endif %}
+            {% empty %}
+            <div class="text-center">
+                <p class="display-1">:-(</p>
+                <h3 class="mt-4">
+                    Désolé, il n'y a pas d'article dans la catégorie <span class="badge badge-info">{{ category.name }}</span>
+                </h3>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<div class="col-sm-3">
+    <h5>Categories</h5>
+    <ul class="list-unstyled" style="display: flex; list-style: none;">
+        {% for cat in categories %}
+        <li style="padding: 5px; margin: 5px">
+            <a href="{% url 'blog:home_cat_selected' cat.slug %}"
+               class="badge badge-secondary">{{ cat.name|capfirst }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}
+    
