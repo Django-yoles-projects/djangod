@@ -17,10 +17,12 @@ from apps.register.views import ActivateAccount
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
+
 import debug_toolbar
 
 urlpatterns = [
-    path('', lambda request : render(request, 'core/home.html'), name="home"),
+    # path('', lambda request : render(request, 'core/home.html'), name="home"),
+    path('', include('apps.blog.urls'), name="blog"),
     path('admin/', admin.site.urls),
     path('accounts/', include('apps.custom_auth.urls'), name="accounts"),
     path("register/", include('apps.register.urls'), name="register"),
@@ -28,4 +30,4 @@ urlpatterns = [
     path('__debug__/', include(debug_toolbar.urls)),
     # url(r'^__debug__/', include(debug_toolbar.urls)),
 ]
-SHOW_TOOLBAR_CALLBACK = True
+# SHOW_TOOLBAR_CALLBACK = True
